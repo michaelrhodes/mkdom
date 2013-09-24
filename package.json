@@ -1,0 +1,45 @@
+{
+  "name": "domlin",
+  "version": "0.0.0",
+  "description": "Convert HTML into DOM elements in the browser and on the server.",
+  "main": "index.js",
+  "browser": "browser.js",
+  "dependencies": {
+    "jsdom": "~0.8.5"
+  },
+  "devDependencies": {
+    "tap": "~0.4.4",
+    "brfs": "~0.0.8",
+    "tape": "~1.1.1"
+  },
+  "scripts": {
+    "test": "tap test/server/*.js"
+  },
+  "testling": {
+    "files": "test/browser/*.js",
+    "browsers": {
+      "ie": [8, 9, 10],
+      "chrome": [25],
+      "firefox": [19],
+      "safari": [5.1, 6],
+      "opera": [12],
+      "iphone": [6],
+      "android": [4.2]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaelrhodes/domlin"
+  },
+  "keywords": [
+    "html",
+    "dom",
+    "browser",
+    "server"
+  ],
+  "author": "Michael Rhodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelrhodes/domlin/issues"
+  }
+}
