@@ -3,14 +3,14 @@ domlin converts plain HTML into DOM elements that can be manipulated in browsers
 
 [![Build status](https://travis-ci.org/michaelrhodes/domlin.png?branch=master)](https://travis-ci.org/michaelrhodes/domlin)
 
-## Install
+[![Browser support](https://ci.testling.com/michaelrhodes/domlin.png)](https://ci.testling.com/michaelrhodes/domlin)
 
+## Install
 ```
 npm install domlin
 ```
 
 ### Example
-
 ``` js
 var fs = require('fs')
 var domify = require('domlin')
@@ -25,7 +25,6 @@ process.stdout.write(page.outerHTML)
 
 #### Note
 On the server, when you run a full document (doctype, etc) through domlin, the returned object will have split the doctype out into a property. This means when it comes time to output the html, you’ll need to write `dom.doctype + dom.outerHTML`.
-
 
 ### License
 [MIT](http://opensource.org/licenses/MIT)
