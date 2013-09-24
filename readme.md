@@ -24,7 +24,7 @@ process.stdout.write(page.outerHTML)
 ```
 
 #### Note
-On the server, when you run a full document (doctype, etc) through domlin, the returned object splits the doctype out into a property. This means when it comes time to output the html, you’ll need to write `dom.doctype + dom.outerHTML`.
+On the server, when you run a full document (doctype, etc) through domlin, the returned object will have split the doctype out into a property. This means when it comes time to output the html, you’ll need to write `dom.doctype + dom.outerHTML`.
 
 
 ### License
