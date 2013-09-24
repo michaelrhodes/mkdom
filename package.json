@@ -1,6 +1,6 @@
 {
   "name": "domlin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Convert HTML into DOM elements in the browser and on the server.",
   "main": "index.js",
   "browser": "browser.js",
@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "tap": "~0.4.4",
-    "brfs": "~0.0.8",
     "tape": "~1.1.1"
   },
   "scripts": {
