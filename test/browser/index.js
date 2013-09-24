@@ -1,4 +1,4 @@
 var run = require('tape').test
-var domify = require('../../browser')
+var domlin = require('../../browser')
 
-require('../shared/tests')(run, domify)
+require('../shared/tests')(run, domlin)

@@ -13,10 +13,10 @@ npm install domlin
 ### Example
 ``` js
 var fs = require('fs')
-var domify = require('domlin')
+var dom = require('domlin')
 var html = fs.readFileSync('./templates/readme.html')
 
-var page = domify(html)
+var page = dom(html)
 page.querySelector('h1').textContent = 'domlin'
 page.querySelector('p').textContent = 'domlin converts pl…'
 

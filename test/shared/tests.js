@@ -1,10 +1,10 @@
-module.exports = function(run, domify) {
+module.exports = function(run, dom) {
 
   run('complete document', function (test) {
-    var dom = domify('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
+    var element = dom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
     
-    var title = dom.querySelector('title').textContent 
-    var intro = dom.querySelector('.introduction').textContent
+    var title = element.querySelector('title').textContent 
+    var intro = element.querySelector('.introduction').textContent
 
     test.equal(title, 'Complete document', 'title matches')
     test.equal(intro, 'This is the introduction.', 'intro matches')
@@ -13,13 +13,13 @@ module.exports = function(run, domify) {
   })
 
   run('partial document', function (test) {
-    var dom = domify('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
+    var element = dom('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
 
     var title = 'The title'
     var copy = 'This <em>is</em> the copy'
     
-    var h1 = dom.querySelector('h1')
-    var p = dom.querySelector('p')
+    var h1 = element.querySelector('h1')
+    var p = element.querySelector('p')
     
     h1.textContent = title
     p.innerHTML = copy

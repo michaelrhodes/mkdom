@@ -1,4 +1,4 @@
 var run = require('tap').test
-var domify = require('../../')
+var domlin = require('../../')
 
-require('../shared/tests')(run, domify)
+require('../shared/tests')(run, domlin)
