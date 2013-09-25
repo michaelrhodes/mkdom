@@ -22,7 +22,7 @@ module.exports = function(html) {
   var children = dom.childNodes
   var elementCount = 0
   for (var i = 0, l = children.length; i < l; i++)
-    if (children[i].nodeName === 3 && ++elementCount > 1)
+    if (children[i].nodeType === 3 && ++elementCount > 1)
       return document(dom).documentElement
  
   // Return enclosed elements without <html> wrapper
