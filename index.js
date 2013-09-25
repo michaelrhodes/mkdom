@@ -16,15 +16,15 @@ module.exports = function(html) {
   // that prevented partial documents from
   // having access to querySelector
   html = '<html>' + html + '</html>'
-  dom = jsdom(html)
+  dom = document(jsdom(html)).documentElement
 
   // Return loose elements inside <html> wrapper
   var children = dom.childNodes
   var elementCount = 0
   for (var i = 0, l = children.length; i < l; i++)
     if (children[i].nodeType === 3 && ++elementCount > 1)
-      return document(dom).documentElement
+      return dom
  
   // Return enclosed elements without <html> wrapper
-  return document(dom).documentElement.firstChild 
+  return dom.firstChild
 }
