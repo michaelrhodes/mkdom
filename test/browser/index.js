@@ -1,4 +1,4 @@
 var run = require('tape').test
-var domlin = require('../../browser')
+var mkdom = require('../../browser')
 
-require('../shared/tests')(run, domlin)
+require('../shared/tests')(run, mkdom)

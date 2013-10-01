@@ -1,7 +1,7 @@
-module.exports = function(run, dom) {
+module.exports = function(run, mkdom) {
 
   run('complete document', function (test) {
-    var element = dom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
+    var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
     
     var title = element.querySelector('title').textContent 
     var intro = element.querySelector('.introduction').textContent
@@ -13,7 +13,7 @@ module.exports = function(run, dom) {
   })
 
   run('partial document', function (test) {
-    var element = dom('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
+    var element = mkdom('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
 
     var title = 'The title'
     var copy = 'This <em>is</em> the copy'
