@@ -23,7 +23,7 @@ page.querySelector('p').textContent = 'mkdom converts pl…'
 process.stdout.write(page.outerHTML)
 ```
 
-You can also take a look at a more real world example, (mkdom-todos)[https://github.com/michaelrhodes/mkdom-todos].
+You can also take a look at a more real world example, [mkdom-todos](https://github.com/michaelrhodes/mkdom-todos).
 
 #### Note
 On the server, when you run a full document (doctype, etc) through mkdom, the returned object will have split the doctype out into a property. This means when it comes time to output the html, you’ll need to write `dom.doctype + dom.outerHTML`.
