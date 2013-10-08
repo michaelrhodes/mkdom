@@ -1,4 +1,6 @@
-module.exports = function(run, mkdom) {
+var run = require('tape').test
+
+module.exports = function(mkdom) {
 
   run('complete document', function (test) {
     var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
