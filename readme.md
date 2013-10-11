@@ -20,7 +20,7 @@ var page = mkdom(html)
 page.querySelector('h1').textContent = 'mkdom'
 page.querySelector('p').textContent = 'mkdom converts pl…'
 
-process.stdout.write(page.outerHTML)
+process.stdout.write(page.doctype + page.outerHTML)
 ```
 
 You can also take a look at a more real world example, [mkdom-todos](https://github.com/michaelrhodes/mkdom-todos).
