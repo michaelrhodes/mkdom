@@ -1,30 +1,22 @@
+var shared = require('./shared')
 var jsdom = require('jsdom').jsdom
+var document = (function(dom) {
+  return jsdom().parentWindow.window.document
+})()
 
-var document = function(dom) {
-  return dom.parentWindow.window.document
-}
-
-module.exports = function(html) {
+var mkdom = function(html) {
+  if (!(this instanceof mkdom)) {
+    return new mkdom(html)
+  }
   var dom = jsdom(html)
 
   // Return full documents as is
   if (dom.doctype) {
-    return document(dom)
+    document = dom.parentWindow.window.document
+    return document
   }
 
-  // This wrapping works around a jsdom bug
-  // that prevented partial documents from
-  // having access to querySelector
-  html = '<html>' + html + '</html>'
-  dom = document(jsdom(html)).documentElement
-
-  // Return loose elements inside <html> wrapper
-  var children = dom.childNodes
-  var elementCount = 0
-  for (var i = 0, l = children.length; i < l; i++)
-    if (children[i].nodeType === 3 && ++elementCount > 1)
-      return dom
- 
-  // Return enclosed elements without <html> wrapper
-  return dom.firstChild
+  return shared(html, document)
 }
+
+module.exports = mkdom

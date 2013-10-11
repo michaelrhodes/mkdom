@@ -32,4 +32,15 @@ module.exports = function(mkdom) {
     test.end()   
   })
 
+  run('document interoperability', function(test) {
+    var expected = '<ul><li><strong>Hello</strong></li></ul>'
+    var list = mkdom('<ul></ul>')
+    var item = mkdom('<li><strong>Hello</strong></li>')
+
+    list.appendChild(item)
+    
+    test.equal(list.outerHTML, expected, 'items merged')
+    test.end()
+  })
+
 }

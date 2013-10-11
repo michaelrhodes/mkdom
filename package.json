@@ -1,6 +1,6 @@
 {
   "name": "mkdom",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Convert HTML into DOM elements in the browser and on the server.",
   "main": "index.js",
   "browser": "browser.js",
