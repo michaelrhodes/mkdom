@@ -39,7 +39,7 @@ module.exports = function(mkdom) {
 
     list.appendChild(item)
     
-    test.equal(list.outerHTML, expected, 'items merged')
+    test.equal(list.parentNode.innerHTML, expected, 'items merged')
     test.end()
   })
 
