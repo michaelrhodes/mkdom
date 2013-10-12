@@ -33,12 +33,13 @@ module.exports = function(mkdom) {
   })
 
   run('document interoperability', function(test) {
-    var expected = '<ul><li><strong>Hello</strong></li></ul>'
+    var expected = '<ul><li><strong>Goodbye</strong></li></ul>'
     var list = mkdom('<ul></ul>')
     var item = mkdom('<li><strong>Hello</strong></li>')
 
     list.appendChild(item)
-    
+    item.querySelector('strong').textContent = 'Goodbye'
+
     test.equal(list.parentNode.innerHTML, expected, 'items merged')
     test.end()
   })
