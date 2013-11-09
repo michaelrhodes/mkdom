@@ -1,6 +1,6 @@
 module.exports = function(html, document) {
   // Custom nodeName ‘cause we can.
-  dom = document.createElement('domify')
+  dom = document.createElement('mkdom')
   dom.innerHTML = html
 
   // Return loose elements inside <domify> wrapper

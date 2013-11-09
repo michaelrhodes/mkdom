@@ -1,6 +1,6 @@
 {
   "name": "mkdom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert HTML into DOM elements in the browser and on the server.",
   "main": "index.js",
   "browser": "browser.js",
@@ -16,7 +16,7 @@
   "testling": {
     "files": "test/browser/*.js",
     "browsers": {
-      "ie": [7, 8, 9, 10],
+      "ie": [6, 7, 8, 9, 10],
       "chrome": [25],
       "firefox": [4, 19],
       "safari": [5.1, 6],
