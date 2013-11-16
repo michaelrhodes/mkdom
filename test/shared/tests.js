@@ -25,7 +25,7 @@ module.exports = function(mkdom) {
     var title = element.getElementsByTagName('title')[0]
     var intro = element.getElementsByTagName('p')[0]
 
-    test.ok(RegExp('Complete document').test(element.innerHTML), 'title matches')
+    test.equal(text(title), 'Complete document', 'title matches')
     test.equal(text(intro), 'This is the introduction.', 'intro matches')
 
     test.end()
