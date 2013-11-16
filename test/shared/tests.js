@@ -1,15 +1,22 @@
 var run = require('tape').test
 
+var text = function(element, content) {
+  var property = !!element.textContent ?
+    'textContent' : 'innerText'
+  element[property] = content || element[property]
+  return element[property]
+}
+
 module.exports = function(mkdom) {
 
   run('complete document', function (test) {
     var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
     
-    var title = element.querySelector('title').textContent 
-    var intro = element.querySelector('.introduction').textContent
+    var title = element.getElementsByTagName('title')[0]
+    var intro = element.getElementsByTagName('p')[0]
 
-    test.equal(title, 'Complete document', 'title matches')
-    test.equal(intro, 'This is the introduction.', 'intro matches')
+    test.equal(text(title), 'Complete document', 'title matches')
+    test.equal(text(intro), 'This is the introduction.', 'intro matches')
 
     test.end()
   })
@@ -20,13 +27,13 @@ module.exports = function(mkdom) {
     var title = 'The title'
     var copy = 'This <em>is</em> the copy'
     
-    var h1 = element.querySelector('h1')
-    var p = element.querySelector('p')
+    var h1 = element.getElementsByTagName('h1')[0]
+    var p = element.getElementsByTagName('p')[0]
     
-    h1.textContent = title
+    text(h1, title)
     p.innerHTML = copy
     
-    test.equal(title, h1.textContent, 'title matches')
+    test.equal(title, text(h1), 'title matches')
     test.equal(copy, p.innerHTML, 'copy matches')
 
     test.end()   
@@ -38,7 +45,7 @@ module.exports = function(mkdom) {
     var item = mkdom('<li><strong>Hello</strong></li>')
 
     list.appendChild(item)
-    item.querySelector('strong').textContent = 'Goodbye'
+    text(item.getElementsByTagName('strong')[0], 'Goodbye')
 
     test.equal(list.parentNode.innerHTML, expected, 'items merged')
     test.end()
