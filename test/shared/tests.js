@@ -1,9 +1,19 @@
 var run = require('tape').test
 
+// Because old IE does uppercase
+// tags and adds return characters.
+var normalise = function(string) {
+  return string.toLowerCase()
+    .replace(/\n|\r/g, '')
+}
+
 var text = function(element, content) {
-  var property = !!element.textContent ?
-    'textContent' : 'innerText'
-  element[property] = content || element[property]
+  var property = (!!element.innerText?
+    'innerText' : 'textContent'
+  )
+  if (content) {
+    element[property] = content
+  }
   return element[property]
 }
 
@@ -34,20 +44,29 @@ module.exports = function(mkdom) {
     p.innerHTML = copy
     
     test.equal(title, text(h1), 'title matches')
-    test.equal(copy, p.innerHTML, 'copy matches')
-
+    test.equal(
+      normalise(copy),
+      normalise(p.innerHTML),
+      'copy matches'
+    )
     test.end()   
   })
 
   run('document interoperability', function(test) {
-    var expected = '<ul><li><strong>Goodbye</strong></li></ul>'
+    var expected = normalise(
+      '<ul><li><strong>Goodbye</strong></li></ul>'
+    )
     var list = mkdom('<ul></ul>')
     var item = mkdom('<li><strong>Hello</strong></li>')
 
     list.appendChild(item)
     text(item.getElementsByTagName('strong')[0], 'Goodbye')
 
-    test.equal(list.parentNode.innerHTML, expected, 'items merged')
+    var result = normalise(
+      list.parentNode.innerHTML
+    )
+
+    test.equal(result, expected, 'items merged')
     test.end()
   })
 
