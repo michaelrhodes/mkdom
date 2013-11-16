@@ -25,7 +25,7 @@ module.exports = function(mkdom) {
     var title = element.getElementsByTagName('title')[0]
     var intro = element.getElementsByTagName('p')[0]
 
-    test.equal(text(title), 'Complete document', 'title matches')
+    test.equal(title.innerHTML, 'Complete document', 'title matches')
     test.equal(text(intro), 'This is the introduction.', 'intro matches')
 
     test.end()
