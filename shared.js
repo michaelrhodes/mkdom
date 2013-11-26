@@ -15,7 +15,8 @@ var map = {
 }
  
 module.exports = function(html, document) {
-  var tag = (html.match(/^[^<]*<([a-z]+)/i) || []).slice(1)[0]
+  html = html.replace(/(^[^<]*|[^>]*$)/, '')
+  var tag = (html.match(/^<([a-z]+)/i) || []).slice(1)[0]
   var wrap = map[tag] || map._default
   var depth = wrap[0]
   var prefix = wrap[1]
