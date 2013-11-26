@@ -1,4 +1,28 @@
+var map = {
+  option: [1, '<select multiple="multiple">', '</select>'],
+  optgroup: [1, '<select multiple="multiple">', '</select>'],
+  legend: [1, '<fieldset>', '</fieldset>'],
+  thead: [1, '<table>', '</table>'],
+  tbody: [1, '<table>', '</table>'],
+  tfoot: [1, '<table>', '</table>'],
+  colgroup: [1, '<table>', '</table>'],
+  caption: [1, '<table>', '</table>'],
+  tr: [2, '<table><tbody>', '</tbody></table>'],
+  td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
+  th: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
+  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
+  _default: [0, '', '']
+}
+ 
 module.exports = function(html, document) {
+  var tag = (html.match(/^[^<]*<([a-z]+)/i) || []).slice(1)[0]
+  var wrap = map[tag] || map._default
+  var depth = wrap[0]
+  var prefix = wrap[1]
+  var suffix = wrap[2]
+
+  html = prefix + html + suffix
+
   // Custom nodeName ‘cause we can.
   dom = document.createElement('mkdom')
   dom.innerHTML = html
@@ -11,5 +35,9 @@ module.exports = function(html, document) {
       return dom
 
   // Return enclosed elements without <domify> wrapper
-  return dom.firstChild
+  var element = dom.firstChild
+  while (depth--) {
+    element = element.firstChild  
+  }
+  return element
 }

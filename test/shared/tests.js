@@ -70,4 +70,10 @@ module.exports = function(mkdom) {
     test.end()
   })
 
+  run('tr tags are wrapped for browser compatibility', function(test) {
+    var row = mkdom('<tr><td>Dog</td></tr>')
+    test.equal(row.getElementsByTagName('td')[0].innerHTML, 'Dog')
+    test.end()
+  })
+
 }
