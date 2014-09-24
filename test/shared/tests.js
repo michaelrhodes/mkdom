@@ -8,7 +8,7 @@ var normalise = function(string) {
 }
 
 var text = function(element, content) {
-  var property = (!!element.innerText?
+  var property = (element.textContent === undefined ?
     'innerText' : 'textContent'
   )
   if (content) {
@@ -20,12 +20,6 @@ var text = function(element, content) {
 module.exports = function(mkdom) {
 
   run('complete document', function (test) {
-    if (process.browser) {
-      test.pass('this is a server-only test')
-      test.end()
-      return
-    }
-
     var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
     
     var title = element.getElementsByTagName('title')[0]
