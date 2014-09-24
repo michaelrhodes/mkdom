@@ -1,11 +1,11 @@
 {
   "name": "mkdom",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Convert HTML into DOM elements in the browser and on the server.",
   "main": "index.js",
   "browser": "browser.js",
   "dependencies": {
-    "jsdom": "~0.10.5"
+    "domino": "~1.0.17"
   },
   "devDependencies": {
     "tape": "~1.1.1"

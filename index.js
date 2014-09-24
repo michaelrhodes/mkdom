@@ -1,19 +1,17 @@
 var shared = require('./shared')
-var jsdom = require('jsdom').jsdom
-var document = (function(dom) {
-  return jsdom().parentWindow.window.document
-})()
+var domino = require('domino')
+var document = domino.createDocument()
 
 var mkdom = function(html) {
   if (!(this instanceof mkdom)) {
     return new mkdom(html)
   }
-  var dom = jsdom(html)
+
+  var dom = domino.createDocument(html)
 
   // Return full documents as is
   if (dom.doctype) {
-    document = dom.parentWindow.window.document
-    return document
+    return dom
   }
 
   return shared(html, document)
