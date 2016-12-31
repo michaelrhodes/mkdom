@@ -25,7 +25,7 @@ module.exports = function(html, document) {
   html = prefix + html + suffix
 
   // Custom nodeName ‘cause we can.
-  dom = document.createElement('mkdom')
+  var dom = document.createElement('mkdom')
   dom.innerHTML = html
 
   // Return loose elements inside <domify> wrapper
