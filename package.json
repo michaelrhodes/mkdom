@@ -2,9 +2,8 @@
   "name": "mkdom",
   "version": "1.0.3",
   "description": "Convert HTML into DOM elements in the browser and on the server.",
-  "main": "./index.js",
+  "main": "index.js",
   "browser": {
-    "./index.js": "./browser.js",
     "domino": false
   },
   "dependencies": {
@@ -14,10 +13,10 @@
     "tape": "~1.1.1"
   },
   "scripts": {
-    "test": "tape test/server/*.js"
+    "test": "tape test.js"
   },
   "testling": {
-    "files": "test/browser/*.js",
+    "files": "test.js",
     "browsers": {
       "ie": [6, 7, 8, 9, 10],
       "chrome": [20, 25, 29],
