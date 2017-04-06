@@ -16,9 +16,7 @@ var map = {
 }
 
 var server = typeof document === 'undefined'
-var doc = server ?
-  domino.createDocument() :
-  document
+var doc = server ? domino.createDocument() : document
 
 module.exports = mkdom
 
