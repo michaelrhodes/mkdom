@@ -1,4 +1,7 @@
 var domino = require('domino')
+
+var server = typeof document === 'undefined'
+var doc = server ? domino.createDocument() : document
 var map = {
   option: [1, '<select multiple="multiple">', '</select>'],
   optgroup: [1, '<select multiple="multiple">', '</select>'],
@@ -14,9 +17,6 @@ var map = {
   col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
   _default: [0, '', '']
 }
-
-var server = typeof document === 'undefined'
-var doc = server ? domino.createDocument() : document
 
 module.exports = mkdom
 
