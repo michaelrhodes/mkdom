@@ -38,21 +38,18 @@ function shared (html, document) {
 
   html = prefix + html + suffix
 
-  // Custom nodeName ‘cause we can.
-  var dom = document.createElement('mkdom')
+  var dom = document.createElement('div')
   dom.innerHTML = html
 
-  // Return loose elements inside <domify> wrapper
+  // Return loose elements inside wrapper
   var children = dom.childNodes
   var elementCount = 0
   for (var i = 0, l = children.length; i < l; i++)
     if (children[i].nodeType == 3 && ++elementCount > 1)
       return dom
 
-  // Return enclosed elements without <domify> wrapper
+  // Return enclosed elements without wrapper
   var element = dom.firstChild
-  while (depth--) {
-    element = element.firstChild
-  }
+  while (depth--) element = element.firstChild
   return element
 }
