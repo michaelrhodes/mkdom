@@ -1,7 +1,7 @@
 {
   "name": "mkdom",
   "version": "1.0.6",
-  "description": "Convert HTML into DOM elements in the browser and on the server",
+  "description": "Isomorphic HTML => DOM in 500 B",
   "main": "index.js",
   "browser": {
     "domino": false
@@ -20,6 +20,7 @@
     "url": "git://github.com/michaelrhodes/mkdom"
   },
   "keywords": [
+    "isomorphic",
     "html",
     "dom",
     "browser",

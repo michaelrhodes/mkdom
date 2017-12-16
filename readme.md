@@ -1,16 +1,16 @@
 # mkdom
-mkdom converts plain HTML into DOM elements that can be manipulated in browsers and on the server. It makes writing shared rendering logic fairly easy.
+mkdom converts HTML into DOM elements in browsers and on the server. It makes writing shared rendering logic fairly easy.
 
-[![Build status](https://travis-ci.org/michaelrhodes/mkdom.png?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
+[![Build status](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
 
 [![Browser support](https://ci.testling.com/michaelrhodes/mkdom.png)](https://ci.testling.com/michaelrhodes/mkdom)
 
-## Install
+## install
 ```
 npm install mkdom
 ```
 
-### Example
+### use
 ``` js
 var fs = require('fs')
 var mkdom = require('mkdom')
@@ -23,7 +23,5 @@ page.querySelector('p').textContent = 'mkdom converts pl…'
 process.stdout.write(page.outerHTML)
 ```
 
-You can also take a look at a more real world example, [mkdom-todos](https://github.com/michaelrhodes/mkdom-todos).
-
-### License
+### obey
 [MIT](http://opensource.org/licenses/MIT)
