@@ -23,10 +23,10 @@ module.exports = mkdom
 function mkdom (html) {
   var dom = {}
   if (server) dom = domino.createDocument(html)
-  return dom.doctype ? dom : shared(html, doc)
+  return dom.doctype ? dom : partial(html, doc)
 }
 
-function shared (html, document) {
+function partial (html, document) {
   html = html.replace(/(^[^<]*|[^>]*$)/, '')
   var tag = (html.match(/^<([a-z]+)/i) || []).slice(1)[0]
   var wrap = map[tag] || map._default
