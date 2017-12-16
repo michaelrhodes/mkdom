@@ -21,9 +21,8 @@ var map = {
 module.exports = mkdom
 
 function mkdom (html) {
-  var dom = {}
-  if (server) dom = domino.createDocument(html)
-  return dom.doctype ? dom : partial(html, doc)
+  var dom = server && domino.createDocument(html)
+  return dom && dom.doctype ? dom : partial(html, doc)
 }
 
 function partial (html, document) {
