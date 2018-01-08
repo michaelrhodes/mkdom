@@ -1,52 +1,38 @@
 var domino = require('domino')
+var wrap = require('./wrap')
 
-var server = typeof document === 'undefined'
-var doc = server ? domino.createDocument() : document
-var map = {
-  option: [1, '<select multiple="multiple">', '</select>'],
-  optgroup: [1, '<select multiple="multiple">', '</select>'],
-  legend: [1, '<fieldset>', '</fieldset>'],
-  thead: [1, '<table>', '</table>'],
-  tbody: [1, '<table>', '</table>'],
-  tfoot: [1, '<table>', '</table>'],
-  colgroup: [1, '<table>', '</table>'],
-  caption: [1, '<table>', '</table>'],
-  tr: [2, '<table><tbody>', '</tbody></table>'],
-  td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
-  th: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
-  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
-  _default: [0, '', '']
-}
+var complete = /^\s*<(!doctype|html)/i
+var browser = typeof document == 'object'
+var doc = browser ? document : domino.createDocument()
 
 module.exports = mkdom
 
 function mkdom (html) {
-  var dom = server && domino.createDocument(html)
-  return dom && dom.doctype ? dom : partial(html, doc)
+  // Remove any surrounding plain text
+  html = html.replace(/(^[^<]*|[^>]*$)/, '')
+
+  return !browser && complete.test(html) ?
+    domino.createDocument(html) :
+    partial(html, doc)
 }
 
-function partial (html, document) {
-  html = html.replace(/(^[^<]*|[^>]*$)/, '')
-  var tag = (html.match(/^<([a-z]+)/i) || []).slice(1)[0]
-  var wrap = map[tag] || map._default
-  var depth = wrap[0]
-  var prefix = wrap[1]
-  var suffix = wrap[2]
+function partial (html, doc) {
+  // Wrap elements that cannot otherwise
+  // be created via innerHTML assignment
+  var w = wrap(html)
 
-  html = prefix + html + suffix
-
-  var dom = document.createElement('div')
-  dom.innerHTML = html
+  var el = doc.createElement('div')
+  el.innerHTML = w ? w.html : html
 
   // Return loose elements inside wrapper
-  var children = dom.childNodes
-  var elementCount = 0
-  for (var i = 0, l = children.length; i < l; i++)
-    if (children[i].nodeType == 3 && ++elementCount > 1)
-      return dom
+  var child = el.childNodes
+  var i = 0, l = child.length
+  for (var c = 0; i < l; i++)
+    if (child[i].nodeType == 3 && ++c > 1)
+      return el
 
   // Return enclosed elements without wrapper
-  var element = dom.firstChild
-  while (depth--) element = element.firstChild
-  return element
+  el = el.firstChild
+  if (w) while (w.depth--) el = el.firstChild
+  return el
 }
