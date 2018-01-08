@@ -15,6 +15,7 @@
     "domino": "~2.0.0"
   },
   "devDependencies": {
+    "benchmark": "~2.1.4",
     "tape": "~4.8.0"
   },
   "repository": {
