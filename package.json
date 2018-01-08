@@ -2,7 +2,7 @@
   "name": "mkdom",
   "author": "Michael Rhodes",
   "description": "Isomorphic HTML => DOM in 500 B",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
