@@ -1,19 +1,21 @@
 {
   "name": "mkdom",
-  "version": "1.0.6",
+  "author": "Michael Rhodes",
   "description": "Isomorphic HTML => DOM in 500 B",
+  "version": "1.0.6",
   "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test.js"
+  },
   "browser": {
     "domino": false
   },
   "dependencies": {
-    "domino": "~1.0.17"
+    "domino": "~2.0.0"
   },
   "devDependencies": {
-    "tape": "~1.1.1"
-  },
-  "scripts": {
-    "test": "node test.js"
+    "tape": "~4.8.0"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,5 @@
     "dom",
     "browser",
     "server"
-  ],
-  "author": "Michael Rhodes",
-  "license": "MIT"
+  ]
 }
