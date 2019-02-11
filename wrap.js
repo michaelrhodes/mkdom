@@ -16,7 +16,7 @@ var lookup = {
 
 module.exports = wrap
 
-function wrap (html, m) {
+function wrap (html, m, w) {
   return (w = lookup[(html.match(name) || [])[1]]) && {
     html: w[1] + html + w[2],
     depth: w[0]
