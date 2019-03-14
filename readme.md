@@ -1,13 +1,13 @@
 # mkdom
-mkdom converts HTML into DOM elements in browsers and on the server. It makes writing shared rendering logic fairly easy.
+isomorphic html to dom conversion
 
-[![Build status](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
+[![build status](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
 
-[![Browser support](https://ci.testling.com/michaelrhodes/mkdom.png)](https://ci.testling.com/michaelrhodes/mkdom)
+[![browser support](https://ci.testling.com/michaelrhodes/mkdom.png)](https://ci.testling.com/michaelrhodes/mkdom)
 
 ## install
 ```
-npm install mkdom
+npm install michaelrhodes/mkdom#1.1.0
 ```
 
 ### use
