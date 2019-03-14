@@ -9,7 +9,7 @@ module.exports = mkdom
 
 function mkdom (html) {
   // Enable use as a tag function
-  if (html.raw) return mkdom(String.raw.apply(String, arguments))
+  if (html.raw) html = String.raw.apply(String, arguments)
 
   // Remove any surrounding plain text
   html = html.replace(/(^[^<]*|[^>]*$)/, '')
