@@ -58,17 +58,6 @@ tape('tr tags are wrapped for browser compatibility', function (t) {
   t.end()
 })
 
-if (String.raw) tape('can be used as a tag function', function (t) {
-  var animal = 'Dog'
-  var row = mkdom`
-    <tr>
-      <td>${animal}</td>
-    </tr>
-  `
-  t.equal(row.getElementsByTagName('td')[0].innerHTML, 'Dog')
-  t.end()
-})
-
 // Because old IE does uppercase
 // tags and adds return characters.
 function normalise (string) {
