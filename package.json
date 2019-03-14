@@ -1,8 +1,8 @@
 {
   "name": "mkdom",
   "author": "Michael Rhodes",
-  "description": "Isomorphic HTML => DOM in 500 B",
-  "version": "1.1.0",
+  "description": "isomorphic html → dom",
+  "version": "1.1.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {

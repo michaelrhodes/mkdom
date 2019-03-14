@@ -1,5 +1,5 @@
 # mkdom
-isomorphic html to dom conversion
+isomorphic html → dom
 
 [![build status](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
 
@@ -7,7 +7,7 @@ isomorphic html to dom conversion
 
 ## install
 ```
-npm install michaelrhodes/mkdom#1.1.0
+npm install michaelrhodes/mkdom#1.1.1
 ```
 
 ### use
