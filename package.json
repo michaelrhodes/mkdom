@@ -3,13 +3,11 @@
   "author": "Michael Rhodes",
   "description": "isomorphic html → dom",
   "version": "1.1.1",
-  "main": "index.js",
+  "main": "node.js",
+  "browser": "browser.js",
   "license": "MIT",
   "scripts": {
     "test": "node test.js"
-  },
-  "browser": {
-    "domino": false
   },
   "dependencies": {
     "domino": "~2.0.0"

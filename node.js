@@ -1,8 +1,5 @@
 var domino = require('domino')
-
-var full = /^\s*<(!doctype|html)/i
-var node = typeof document !== 'object'
-var doc = node ? domino.createDocument() : document
+var doc = domino.createDocument()
 
 module.exports = mkdom
 
@@ -14,7 +11,7 @@ function mkdom (html) {
   html = html.replace(/(^[^<]*|[^>]*$)/g, '')
 
   // Full pages need their own document object
-  return node && full.test(html) ?
+  return /^\s*<(!doctype|html)/i.test(html) ?
     domino.createDocument(html) :
     partial(html, doc)
 }
