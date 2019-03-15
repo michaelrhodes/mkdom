@@ -1,5 +1,4 @@
 var domino = require('domino')
-var wrap = require('./wrap')
 
 var full = /^\s*<(!doctype|html)/i
 var node = typeof document !== 'object'
@@ -12,7 +11,7 @@ function mkdom (html) {
   if (html.raw) html = String.raw.apply(String, arguments)
 
   // Remove any surrounding plain text
-  html = html.replace(/(^[^<]*|[^>]*$)/, '')
+  html = html.replace(/(^[^<]*|[^>]*$)/g, '')
 
   // Full pages need their own document object
   return node && full.test(html) ?
@@ -21,22 +20,7 @@ function mkdom (html) {
 }
 
 function partial (html, doc) {
-  // Wrap elements that cannot otherwise
-  // be created via innerHTML assignment
-  var w = wrap(html)
-
-  var el = doc.createElement('div')
-  el.innerHTML = w ? w.html : html
-
-  // Return loose elements inside wrapper
-  var child = el.childNodes
-  var i = 0, l = child.length
-  for (var c = 0; i < l; i++)
-    if (child[i].nodeType === 3 && ++c > 1)
-      return el
-
-  // Return enclosed elements without wrapper
-  el = el.firstChild
-  if (w) while (w.depth--) el = el.firstChild
-  return el
+  var tpl = doc.createElement('template')
+  var el = (tpl.innerHTML = html) && tpl.content
+  return el.childNodes.length > 1 ? el : el.childNodes[0]
 }

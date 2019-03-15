@@ -4,8 +4,8 @@ var mkdom = require('./')
 tape('complete document', function (t) {
   var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
 
-  var title = element.getElementsByTagName('title')[0]
-  var intro = element.getElementsByTagName('p')[0]
+  var title = element.querySelector('title')
+  var intro = element.querySelector('p')
 
   t.equal(text(title), 'Complete document', 'title matches')
   t.equal(text(intro), 'This is the introduction.', 'intro matches')
@@ -44,22 +44,19 @@ tape('document interoperability', function (t) {
   list.appendChild(item)
   text(item.getElementsByTagName('strong')[0], 'Goodbye')
 
-  var result = normalise(
-    list.parentNode.innerHTML
-  )
-
+  var result = normalise(list.outerHTML)
   t.equal(result, expected, 'items merged')
   t.end()
 })
 
-tape('tr tags are wrapped for browser compatibility', function (t) {
+tape('elements that once needed wrapping no longer do', function (t) {
   var row = mkdom('<tr><td>Dog</td></tr>')
   t.equal(row.getElementsByTagName('td')[0].innerHTML, 'Dog')
   t.end()
 })
 
-// Because old IE does uppercase
-// tags and adds return characters.
+// Old IE does uppercase element
+// names and adds return characters
 function normalise (string) {
   return string.toLowerCase()
     .replace(/\n|\r/g, '')
