@@ -4,8 +4,7 @@ function mkdom (html) {
   // Enable use as a tag function
   if (html.raw) html = String.raw.apply(String, arguments)
 
-  // Remove any surrounding plain text
-  html = html.replace(/(^[^<]*|[^>]*$)/g, '')
+  html = html.trim()
 
   var tpl = document.createElement('template')
   var el = (tpl.innerHTML = html) && tpl.content

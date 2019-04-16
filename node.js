@@ -7,8 +7,7 @@ function mkdom (html) {
   // Enable use as a tag function
   if (html.raw) html = String.raw.apply(String, arguments)
 
-  // Remove any surrounding plain text
-  html = html.replace(/(^[^<]*|[^>]*$)/g, '')
+  html = html.trim()
 
   // Full pages need their own document object
   return /^\s*<(!doctype|html)/i.test(html) ?
