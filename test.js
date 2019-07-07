@@ -55,6 +55,12 @@ tape('elements that once needed wrapping no longer do', function (t) {
   t.end()
 })
 
+tape('it always returns a dom node', function (t) {
+  var fragment = mkdom()
+  t.equal(fragment.nodeType, 11)
+  t.end()
+})
+
 // Old IE does uppercase element
 // names and adds return characters
 function normalise (string) {

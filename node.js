@@ -4,6 +4,8 @@ var doc = domino.createDocument()
 module.exports = mkdom
 
 function mkdom (html) {
+  if (html == null) html = ''
+
   // Enable use as a tag function
   if (html.raw) html = String.raw.apply(String, arguments)
 
@@ -18,5 +20,8 @@ function mkdom (html) {
 function partial (html, doc) {
   var tpl = doc.createElement('template')
   var el = (tpl.innerHTML = html) && tpl.content
-  return el.childNodes.length > 1 ? el : el.childNodes[0]
+  return !el ? doc.createDocumentFragment() : (
+    el.childNodes.length > 1 ? el :
+    el.childNodes[0]
+  )
 }
