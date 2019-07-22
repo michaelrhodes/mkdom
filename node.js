@@ -1,7 +1,10 @@
 var domino = require('domino')
-var doc = domino.createDocument()
+var window = domino.createWindow()
+var document = window.document
 
 module.exports = mkdom
+module.exports.window = window
+module.exports.document = document
 
 function mkdom (html) {
   if (html == null) html = ''
@@ -11,16 +14,14 @@ function mkdom (html) {
 
   html = html.trim()
 
-  // Full pages need their own document object
-  return /^\s*<(!doctype|html)/i.test(html) ?
-    domino.createDocument(html) :
-    partial(html, doc)
-}
+  if (/^\s*<(!doctype|html)/i.test(html)) {
+    document.documentElement.innerHTML = html
+    return document
+  }
 
-function partial (html, doc) {
-  var tpl = doc.createElement('template')
+  var tpl = document.createElement('template')
   var el = (tpl.innerHTML = html) && tpl.content
-  return !el ? doc.createDocumentFragment() : (
+  return !el ? document.createDocumentFragment() : (
     el.childNodes.length > 1 ? el :
     el.childNodes[0]
   )

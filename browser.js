@@ -1,4 +1,6 @@
 module.exports = mkdom
+module.exports.window = window
+module.exports.document = document
 
 function mkdom (html) {
   if (html == null) html = ''
