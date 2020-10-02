@@ -4,10 +4,10 @@
   "description": "isomorphic html → dom",
   "version": "1.1.1",
   "main": "node.js",
-  "browser": "browser.js",
+  "browser": "core.js",
   "license": "MIT",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test"
   },
   "dependencies": {
     "domino": "~2.0.0"
