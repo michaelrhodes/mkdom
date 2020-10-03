@@ -4,7 +4,7 @@
   "description": "isomorphic html → dom",
   "version": "1.1.1",
   "main": "node.js",
-  "browser": "core.js",
+  "browser": "browser.js",
   "license": "MIT",
   "scripts": {
     "test": "node test"
