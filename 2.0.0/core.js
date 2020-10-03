@@ -1,0 +1,1 @@
+!function(e){"module"in this?module.exports=e():mkdom=e()}(function(){return function(e){var n=this.document.createElement("template"),t=(n.innerHTML=(e||"").trim(),n.content);return(1===t.childNodes.length?t.childNodes[0]:t).cloneNode(!0)}});
