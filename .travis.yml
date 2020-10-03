@@ -5,3 +5,5 @@ node_js:
   - 13
   - 12
   - 10
+before_script:
+  - npm install domino

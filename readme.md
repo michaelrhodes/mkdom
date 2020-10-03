@@ -1,16 +1,16 @@
 # mkdom
 isomorphic html → dom
 
-[![build status](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
-
-[![browser support](https://ci.testling.com/michaelrhodes/mkdom.png)](https://ci.testling.com/michaelrhodes/mkdom)
+[![ci](https://travis-ci.org/michaelrhodes/mkdom.svg?branch=master)](https://travis-ci.org/michaelrhodes/mkdom)
 
 ## install
 ```
-npm install michaelrhodes/mkdom#1.1.1
+npm install https://pkg.mkr.sx/mkdom/2.0.0.tgz
 ```
 
-### use
+*note*: in non-browser environments you’ll also need to install [domino](https://github.com/fgnass/domino)
+
+## use
 ``` js
 var fs = require('fs')
 var mkdom = require('mkdom')
@@ -23,5 +23,5 @@ page.querySelector('p').textContent = 'mkdom converts pl…'
 process.stdout.write(page.outerHTML)
 ```
 
-### obey
-[MIT](http://opensource.org/licenses/MIT)
+## obey
+[CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)

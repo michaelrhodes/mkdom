@@ -1,30 +1,17 @@
 {
   "name": "mkdom",
-  "author": "Michael Rhodes",
-  "description": "isomorphic html → dom",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "main": "node.js",
   "browser": "browser.js",
-  "license": "MIT",
-  "scripts": {
-    "test": "dexy test"
-  },
-  "dependencies": {
-    "domino": "~2.0.0"
-  },
+  "description": "isomorphic html → dom",
+  "license": "CC0-1.0",
   "devDependencies": {
-    "benchmark": "~2.1.4",
     "dexy": "https://pkg.mkr.sx/dexy/1.2.0.tgz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/michaelrhodes/mkdom"
+  "peerDependencies": {
+    "domino": "~2.1.6"
   },
-  "keywords": [
-    "isomorphic",
-    "html",
-    "dom",
-    "browser",
-    "server"
-  ]
+  "scripts": {
+    "test": "dexy test"
+  }
 }
