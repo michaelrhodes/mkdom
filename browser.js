@@ -1,7 +1,7 @@
 module.exports = mkdom
 
-var core = require('./core')
 var dom = new DOMParser
+var core = require('./core')
 
 function mkdom (html) {
   return /^\s*<(!doctype|html)/i.test(html) ?

@@ -7,14 +7,14 @@
   "browser": "browser.js",
   "license": "MIT",
   "scripts": {
-    "test": "node test"
+    "test": "dexy test"
   },
   "dependencies": {
     "domino": "~2.0.0"
   },
   "devDependencies": {
     "benchmark": "~2.1.4",
-    "tape": "~4.8.0"
+    "dexy": "https://pkg.mkr.sx/dexy/1.2.0.tgz"
   },
   "repository": {
     "type": "git",

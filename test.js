@@ -1,76 +1,38 @@
-var tape = require('tape')
+var assert = require('dexy/assert')
 var mkdom = require('./')
 
-tape('complete document', function (t) {
-  var element = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
+// Full document
+dom = mkdom('<!doctype html>\n<html>\n  <head>\n    <title>Complete document</title>\n  </head>\n  <body>\n    <p class="introduction">This is the introduction.</p>\n  </body>\n</html>\n')
+title = dom.querySelector('title')
+intro = dom.querySelector('p')
 
-  var title = element.querySelector('title')
-  var intro = element.querySelector('p')
+assert('title matches', title.textContent, 'Complete document')
+assert('intro matches', intro.textContent, 'This is the introduction.')
 
-  t.equal(text(title), 'Complete document', 'title matches')
-  t.equal(text(intro), 'This is the introduction.', 'intro matches')
+// Partial document
+dom = mkdom('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
+h1 = dom.getElementsByTagName('h1')[0]
+p = dom.getElementsByTagName('p')[0]
 
-  t.end()
-})
+h1.textContent = title = 'The title'
+p.innerHTML = copy = 'This <em>is</em> the copy'
 
-tape('partial document', function (t) {
-  var element = mkdom('<div class="wrapper">\n  <h1>Heading 1</h1>\n  <p>Paragraph</p>\n</div>\n')
+assert('title matches', h1.textContent, title)
+assert('copy matches', p.innerHTML, copy)
 
-  var title = 'The title'
-  var copy = 'This <em>is</em> the copy'
+// Document interoperability
+list = mkdom('<ul></ul>')
+item = mkdom('<li><strong>Hello</strong></li>')
+strong = item.getElementsByTagName('strong')[0]
+strong.textContent = 'Goodbye'
+list.appendChild(item)
 
-  var h1 = element.getElementsByTagName('h1')[0]
-  var p = element.getElementsByTagName('p')[0]
+expected = '<ul><li><strong>Goodbye</strong></li></ul>'
+assert('items merged', list.outerHTML, expected)
 
-  text(h1, title)
-  p.innerHTML = copy
+// Final thoughts
+dom = mkdom('<tr><td>Dog</td></tr>')
+assert('it unwraps', dom.getElementsByTagName('td')[0].textContent, 'Dog')
 
-  t.equal(title, text(h1), 'title matches')
-  t.equal(
-    normalise(copy),
-    normalise(p.innerHTML),
-    'copy matches'
-  )
-  t.end()
-})
-
-tape('document interoperability', function (t) {
-  var expected = normalise(
-    '<ul><li><strong>Goodbye</strong></li></ul>'
-  )
-  var list = mkdom('<ul></ul>')
-  var item = mkdom('<li><strong>Hello</strong></li>')
-
-  list.appendChild(item)
-  text(item.getElementsByTagName('strong')[0], 'Goodbye')
-
-  var result = normalise(list.outerHTML)
-  t.equal(result, expected, 'items merged')
-  t.end()
-})
-
-tape('elements that once needed wrapping no longer do', function (t) {
-  var row = mkdom('<tr><td>Dog</td></tr>')
-  t.equal(row.getElementsByTagName('td')[0].innerHTML, 'Dog')
-  t.end()
-})
-
-tape('it always returns a dom node', function (t) {
-  var fragment = mkdom()
-  t.equal(fragment.nodeType, 11)
-  t.end()
-})
-
-// Old IE does uppercase element
-// names and adds return characters
-function normalise (string) {
-  return string.toLowerCase()
-    .replace(/\n|\r/g, '')
-}
-
-function text (element, content) {
-  var property = element.textContent === void 0 ?
-    'innerText' : 'textContent'
-  if (content) element[property] = content
-  return element[property]
-}
+dom = mkdom()
+assert('is document fragment', dom.nodeType, dom.DOCUMENT_FRAGMENT_NODE)
