@@ -8,7 +8,7 @@ isomorphic html → dom
 npm install https://pkg.mkr.sx/mkdom/2.0.0.tgz
 ```
 
-*note*: in non-browser environments you’ll also need to install [domino](https://github.com/fgnass/domino)
+*note*: in non-browser environments you’ll also need to install [linkedom](https://github.com/WebReflection/linkedom)
 
 ## use
 ``` js

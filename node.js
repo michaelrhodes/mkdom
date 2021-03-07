@@ -1,11 +1,12 @@
 module.exports = mkdom
 
-var dom = require('domino')
+var linkedom = require('linkedom')
 var core = require('./core')
 
+var dom = new linkedom.DOMParser
+
 function mkdom (html) {
-  var ctx = dom.createWindow()
   return /^\s*<(!doctype|html)/i.test(html) ?
-   ((ctx.document.documentElement.innerHTML = html), ctx.document) :
-    core.call(ctx, html)
+    dom.parseFromString(html, 'text/html') :
+    core.call(dom.parseFromString('', 'text/html').defaultView, html)
 }
